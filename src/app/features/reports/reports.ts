@@ -274,8 +274,8 @@ import { AuthService } from '../../core/services/auth.service';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 0.2rem 1rem;
+      border-bottom: 0.5px solid #e5e7eb;
     }
 
     .modal-header h3 {
@@ -310,7 +310,7 @@ import { AuthService } from '../../core/services/auth.service';
     }
 
     .form-input {
-      width: 100%;
+      width: 95%;
       padding: 0.75rem;
       border: 1px solid #d1d5db;
       border-radius: 0.375rem;

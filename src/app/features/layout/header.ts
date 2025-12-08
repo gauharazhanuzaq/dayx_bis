@@ -9,11 +9,9 @@ import { AuthService } from '../../core/services/auth.service';
   template: `
     <header class="header">
       <div class="header-content">
-        <button class="menu-toggle" (click)="toggleSidebar.emit()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M3 12h18M3 6h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
+    <div class="header-logo">
+      <img src="/logo2.png" alt="logo">
+    </div>
         
         <h1 class="header-title">Admin Panel</h1>
         
@@ -34,20 +32,26 @@ import { AuthService } from '../../core/services/auth.service';
   `,
   styles: [`
     .header {
+      height:70px;
+      align-items:center;
       background: white;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
-      top: 0;
-      z-index: 50;
+      width: 100%;
+      inset: 0; 
     }
-
+    .header-logo img {
+      width: 70px;
+      height: auto;
+      object-fit: contain;
+    }
     .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 1.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .menu-toggle {
@@ -125,6 +129,6 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class HeaderComponent {
   toggleSidebar = output<void>();
-  
-  constructor(public authService: AuthService) {}
+
+  constructor(public authService: AuthService) { }
 }

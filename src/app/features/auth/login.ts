@@ -12,13 +12,7 @@ import { AuthService } from '../../core/services/auth.service';
     <div class="login-container">
       <div class="login-card">
         <div class="logo-section">
-          <div class="logo-circle">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" 
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 12l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+            <img src="/logo2.png" alt="logo">
           <h1>Admin Panel</h1>
           <p>Sign in with your Firebase account</p>
         </div>
@@ -126,44 +120,15 @@ import { AuthService } from '../../core/services/auth.service';
   `,
   styles: [`
     .login-container {
-      min-height: 100vh;
+      position: fixed; 
+      inset: 0;    
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 2rem 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .login-container::before {
-      content: '';
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      top: -200px;
-      right: -200px;
-      animation: float 20s infinite ease-in-out;
-    }
-
-    .login-container::after {
-      content: '';
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      bottom: -150px;
-      left: -150px;
-      animation: float 15s infinite ease-in-out reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+      background: #dde8f0ff;
+      overflow: auto;  
+      z-index: 0;    
     }
 
     .login-card {
@@ -194,19 +159,11 @@ import { AuthService } from '../../core/services/auth.service';
       margin-bottom: 2.5rem;
     }
 
-    .logo-circle {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      color: white;
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    .logo-section img {
+      width: 30%;
+      height: 30%;
+      object-fit: contain;
     }
-
     .logo-section h1 {
       font-size: 1.875rem;
       font-weight: 700;
@@ -261,7 +218,7 @@ import { AuthService } from '../../core/services/auth.service';
     }
 
     .form-input {
-      width: 100%;
+      width: 92%;
       padding: 0.875rem 1rem;
       border: 2px solid #e5e7eb;
       border-radius: 0.5rem;
@@ -272,7 +229,7 @@ import { AuthService } from '../../core/services/auth.service';
 
     .form-input:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: #121e56ff;
       background: white;
       box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
     }
@@ -307,7 +264,7 @@ import { AuthService } from '../../core/services/auth.service';
 
     .btn-login {
       width: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #214992ff;
       color: white;
       border: none;
       padding: 1rem;
@@ -373,7 +330,7 @@ import { AuthService } from '../../core/services/auth.service';
     .login-footer {
       margin-top: 2rem;
       text-align: center;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(2, 2, 2, 0.8);
       font-size: 0.875rem;
       position: relative;
       z-index: 1;
@@ -409,7 +366,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   togglePassword(): void {
     this.showPassword.update(v => !v);
@@ -424,7 +381,7 @@ export class LoginComponent {
       this.router.navigate(['/dashboard']);
     } catch (error: any) {
       let message = 'Login failed. Please try again.';
-      
+
       if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
         message = 'Invalid email or password.';
       } else if (error.code === 'auth/too-many-requests') {
@@ -436,7 +393,7 @@ export class LoginComponent {
       } else if (error.message === 'User profile not found. Please contact administrator.') {
         message = 'User profile not found. Check Firestore database.';
       }
-      
+
       this.errorMessage.set(message);
       console.error('Full error:', error);
     } finally {
