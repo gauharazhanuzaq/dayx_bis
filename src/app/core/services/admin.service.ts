@@ -70,7 +70,7 @@ export class AdminService {
 
   private subscribeToUsers(): void {
     const usersRef = collection(this.firestore, 'users');
-    const q = query(usersRef, orderBy('registeredAt', 'desc'));
+    const q = query(usersRef, orderBy('createdAt', 'desc'));
 
     onSnapshot(q, (snapshot) => {
       const users: AppUser[] = [];
